@@ -2,7 +2,7 @@
 import streamlit as st
 
 # Hardcoded password: "saymyname"
-PASSWORD_HASH = "$pbkdf2-sha256$29000$x5hTKuWcM.Z8D.E8x9ibcw$2KqL/YL0HqJC0sR3BzVQXN7KwKMZJPxdl8qzWjvH3Aw"
+PASSWORD_HASH = "$pbkdf2-sha256$29000$BMA4RwgBQAjhPAcgZGxtDQ$rEjfGFwkUDzF0eyrf90.0Rmy0C.CePqyxY4OEEAbtow"
 
 
 def check_password():
