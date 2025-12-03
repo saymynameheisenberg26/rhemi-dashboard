@@ -42,7 +42,7 @@ def check_password():
     
     st.markdown("---")
     st.caption("💡 First time? Generate a password hash with:")
-    st.code("python -c \"from passlib.hash import pbkdf2_sha256; print(pbkdf2_sha256.hash('your_password'))\"")
+    st.code("python3 -c \"from passlib.hash import pbkdf2_sha256; print(pbkdf2_sha256.hash('your_password'))\"")
     
     return False
 
