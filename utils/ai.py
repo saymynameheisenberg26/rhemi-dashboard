@@ -3,11 +3,19 @@ import os
 from dotenv import load_dotenv
 import openai
 from datetime import datetime
+import streamlit as st
 
 load_dotenv()
 
-# Configure OpenAI
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Configure OpenAI - try .env first, then Streamlit secrets
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key and hasattr(st, 'secrets'):
+    try:
+        api_key = st.secrets.get("OPENAI_API_KEY")
+    except:
+        pass
+
+openai.api_key = api_key
 
 
 def get_ai_response(prompt, max_tokens=500, temperature=0.7):

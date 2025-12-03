@@ -12,10 +12,18 @@ def check_password():
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
+        # Try to get password hash from .env first, then from Streamlit secrets
         password_hash = os.getenv("PASSWORD_HASH")
         
+        # If not in .env, try Streamlit secrets
+        if not password_hash and hasattr(st, 'secrets'):
+            try:
+                password_hash = st.secrets.get("PASSWORD_HASH")
+            except:
+                pass
+        
         if not password_hash:
-            st.error("❌ No password hash found in .env file. Please set PASSWORD_HASH.")
+            st.error("❌ No password hash found. Please set PASSWORD_HASH in .env or Streamlit secrets.")
             return
         
         if pbkdf2_sha256.verify(st.session_state["password"], password_hash):
